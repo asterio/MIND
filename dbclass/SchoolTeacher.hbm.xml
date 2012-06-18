@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2012-02-13 14:15:25 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="dbclass.SchoolTeacher" table="SCHOOL_TEACHER" schema="MIND">
+        <id name="teacherId" type="integer">
+            <column name="TEACHER_ID" precision="22" scale="0" />
+            <generator class="increment" />
+        </id>
+        <many-to-one name="school" class="dbclass.School" fetch="select">
+            <column name="SCHOOL_ID" precision="22" scale="0" />
+        </many-to-one>
+        <property name="teacherName" type="string">
+            <column name="TEACHER_NAME" length="50" not-null="true" />
+        </property>
+        <property name="teacherSurname" type="string">
+            <column name="TEACHER_SURNAME" length="50" not-null="true" />
+        </property>
+        <set name="schoolSubjectTeachers" inverse="true">
+            <key>
+                <column name="TEACHER_ID" precision="22" scale="0" />
+            </key>
+            <one-to-many class="dbclass.SchoolSubjectTeacher" />
+        </set>
+        <set name="schoolClasses" inverse="true">
+            <key>
+                <column name="TEACHER_ID" precision="22" scale="0" />
+            </key>
+            <one-to-many class="dbclass.SchoolClass" />
+        </set>
+        <set name="schoolLessons" inverse="true">
+            <key>
+                <column name="TEACHER_ID" precision="22" scale="0" />
+            </key>
+            <one-to-many class="dbclass.SchoolLesson" />
+        </set>
+        <set name="schoolMessages" inverse="true">
+            <key>
+                <column name="TEACHER_ID" precision="22" scale="0" />
+            </key>
+            <one-to-many class="dbclass.SchoolMessage" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2012-02-13 14:15:25 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="dbclass.SchoolMessage" table="SCHOOL_MESSAGE" schema="MIND">
+        <id name="messageId" type="integer">
+            <column name="MESSAGE_ID" precision="22" scale="0" />
+            <generator class="increment" />
+        </id>
+        <many-to-one name="schoolLesson" class="dbclass.SchoolLesson" fetch="select">
+            <column name="LESSON_ID" precision="22" scale="0" />
+        </many-to-one>
+        <many-to-one name="schoolTeacher" class="dbclass.SchoolTeacher" fetch="select">
+            <column name="TEACHER_ID" precision="22" scale="0" />
+        </many-to-one>
+        <property name="messageDate" type="date">
+            <column name="MESSAGE_DATE" length="7" not-null="true" />
+        </property>
+        <property name="text" type="string">
+            <column name="TEXT" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

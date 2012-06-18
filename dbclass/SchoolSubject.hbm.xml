@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2012-02-13 14:15:25 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="dbclass.SchoolSubject" table="SCHOOL_SUBJECT" schema="MIND">
+        <id name="subjectId" type="integer">
+            <column name="SUBJECT_ID" precision="22" scale="0" />
+            <generator class="increment" />
+        </id>
+        <property name="subjectName" type="string">
+            <column name="SUBJECT_NAME" length="20" not-null="true" unique="true" />
+        </property>
+        <set name="schoolLessons" inverse="true">
+            <key>
+                <column name="SUBJECT_ID" precision="22" scale="0" />
+            </key>
+            <one-to-many class="dbclass.SchoolLesson" />
+        </set>
+        <set name="schoolSubjectTeachers" inverse="true">
+            <key>
+                <column name="SUBJECT_ID" precision="22" scale="0" />
+            </key>
+            <one-to-many class="dbclass.SchoolSubjectTeacher" />
+        </set>
+    </class>
+</hibernate-mapping>

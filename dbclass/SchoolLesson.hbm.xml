@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2012-02-13 14:15:25 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="dbclass.SchoolLesson" table="SCHOOL_LESSON" schema="MIND">
+        <id name="lessonId" type="integer">
+            <column name="LESSON_ID" precision="22" scale="0" />
+            <generator class="increment" />
+        </id>
+        <many-to-one name="schoolLessonNumber" class="dbclass.SchoolLessonNumber" fetch="select">
+            <column name="SCHOOL_ID" precision="22" scale="0" />
+            <column name="LESSON_NUMBER_ID" precision="22" scale="0" />
+        </many-to-one>
+        <many-to-one name="schoolClass" class="dbclass.SchoolClass" fetch="select">
+            <column name="CLASS_ID" precision="22" scale="0" />
+        </many-to-one>
+        <many-to-one name="schoolTeacher" class="dbclass.SchoolTeacher" fetch="select">
+            <column name="TEACHER_ID" precision="22" scale="0" />
+        </many-to-one>
+        <many-to-one name="schoolSubject" class="dbclass.SchoolSubject" fetch="select">
+            <column name="SUBJECT_ID" precision="22" scale="0" />
+        </many-to-one>
+        <property name="dayId" type="integer">
+            <column name="DAY_ID" precision="22" scale="0" not-null="true" />
+        </property>
+        <property name="room" type="string">
+            <column name="ROOM" length="10" />
+        </property>
+        <set name="schoolMessages" inverse="true">
+            <key>
+                <column name="LESSON_ID" precision="22" scale="0" />
+            </key>
+            <one-to-many class="dbclass.SchoolMessage" />
+        </set>
+    </class>
+</hibernate-mapping>

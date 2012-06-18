@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2012-02-13 14:15:25 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="dbclass.SchoolSubjectTeacher" table="SCHOOL_SUBJECT_TEACHER" schema="MIND">
+        <id name="subjectTeacherId" type="integer">
+            <column name="SUBJECT_TEACHER_ID" precision="22" scale="0" />
+            <generator class="increment" />
+        </id>
+        <many-to-one name="schoolTeacher" class="dbclass.SchoolTeacher" fetch="select">
+            <column name="TEACHER_ID" precision="22" scale="0" />
+        </many-to-one>
+        <many-to-one name="schoolSubject" class="dbclass.SchoolSubject" fetch="select">
+            <column name="SUBJECT_ID" precision="22" scale="0" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

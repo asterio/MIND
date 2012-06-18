@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2012-02-13 14:15:25 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="dbclass.SchoolUser" table="SCHOOL_USER" schema="MIND">
+        <id name="userId" type="integer">
+            <column name="USER_ID" precision="22" scale="0" />
+            <generator class="increment" />
+        </id>
+        <many-to-one name="school" class="dbclass.School" fetch="select">
+            <column name="SCHOOL_ID" precision="22" scale="0" />
+        </many-to-one>
+        <property name="userPrivilege" type="integer">
+            <column name="USER_PRIVILEGE" precision="22" scale="0" />
+        </property>
+        <property name="login" type="string">
+            <column name="LOGIN" length="32" not-null="true" />
+        </property>
+        <property name="pass" type="string">
+            <column name="PASS" length="32" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>
